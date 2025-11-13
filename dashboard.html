@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BI Dashboard - Pixel & Pitch</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --primary-color-dark: #667eea;
+            --primary-color-light: #764ba2;
+            --dark-text: #1a202c;
+            --light-text: #4a5568;
+            --bg-light: #f7fafc;
+            --card-bg: #ffffff;
+            --radius-md: 12px;
+            --shadow-md: 0 8px 16px rgba(0,0,0,0.08);
+            --shadow-sm: 0 4px 10px rgba(0,0,0,0.05);
+            --transition-main: all 0.3s ease-in-out;
+            --red: #e53e3e;
+            --green: #38a169;
+        }
+        body {
+            font-family: 'Poppins', sans-serif; margin: 0; padding: 0;
+            line-height: 1.7; background-color: var(--bg-light); color: var(--light-text);
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        section { padding-top: 40px; padding-bottom: 40px; }
+        h1, h2, h3 {
+            font-weight: 600; color: var(--dark-text); margin: 0 0 20px 0;
+        }
+        p { margin: 0 0 15px 0; font-size: 1.05rem; }
+        header {
+            background: var(--card-bg); box-shadow: var(--shadow-sm);
+            padding: 20px 0; position: sticky; top: 0; z-index: 100;
+        }
+        header .container { display: flex; justify-content: space-between; align-items: center; }
+        .logo {
+            font-size: 1.7rem; font-weight: 700; background: var(--primary-gradient);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none;
+        }
+        nav ul { list-style: none; margin: 0; padding: 0; display: flex; }
+        nav li { margin-left: 25px; }
+        nav a {
+            text-decoration: none; color: var(--light-text); font-weight: 600;
+            font-size: 0.95rem; transition: var(--transition-main);
+        }
+        nav a:hover { color: var(--primary-color-dark); }
+        nav a.logout-button {
+            background: var(--red); color: #fff; padding: 10px 18px;
+            border-radius: var(--radius-md); box-shadow: var(--shadow-sm);
+        }
+        nav a.logout-button:hover { color: #fff; transform: translateY(-2px); }
+        .dashboard-header {
+            display: flex; justify-content: space-between;
+            align-items: center; margin-bottom: 30px;
+        }
+        .dashboard-header h1 { font-size: 2.2rem; margin: 0; }
+        .dashboard-kpi-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px; margin-bottom: 30px;
+        }
+        .kpi-card {
+            background: var(--card-bg); padding: 25px;
+            border-radius: var(--radius-md); box-shadow: var(--shadow-sm);
+        }
+        .kpi-card h3 {
+            font-size: 1.1rem; color: var(--light-text);
+            font-weight: 400; margin-bottom: 10px;
+        }
+        .kpi-value {
+            font-size: 2.5rem; font-weight: 700;
+            color: var(--dark-text); margin-bottom: 5px;
+        }
+        .kpi-change { font-size: 0.95rem; font-weight: 600; }
+        .kpi-change.positive { color: var(--green); }
+        .kpi-change.negative { color: var(--red); }
+        .dashboard-main-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;
+        }
+        .dashboard-card {
+            background: var(--card-bg); padding: 30px;
+            border-radius: var(--radius-md); box-shadow: var(--shadow-sm);
+        }
+        .dashboard-card h3 { font-size: 1.5rem; margin: 0 0 25px 0; }
+        .card-span-2 { grid-column: span 2; }
+        .card-span-1 { grid-column: span 1; }
+        .card-span-3 { grid-column: span 3; }
+        .chart-container { position: relative; height: 350px; }
+        .pro-table { width: 100%; border-collapse: collapse; }
+        .pro-table th, .pro-table td {
+            padding: 12px 15px; text-align: left; border-bottom: 1px solid #eee;
+        }
+        .pro-table th {
+            background-color: var(--bg-light); color: var(--dark-text);
+            font-size: 0.9rem; text-transform: uppercase;
+        }
+        .pro-table td { font-size: 1rem; }
+        .status-badge {
+            padding: 5px 12px; border-radius: 20px;
+            font-size: 0.85rem; font-weight: 600;
+        }
+        .status-shipped { background-color: rgba(102, 126, 234, 0.1); color: var(--primary-color-dark); }
+        .status-pending { background-color: rgba(255, 159, 64, 0.1); color: #d97706; }
+        .status-delivered { background-color: rgba(56, 161, 105, 0.1); color: var(--green); }
+        
+        /* [NEW] Quick Access Feature Styles */
+        .quick-access-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        .quick-link {
+            display: block;
+            padding: 15px;
+            background-color: var(--bg-light);
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            color: var(--primary-color-dark);
+            font-weight: 600;
+            text-align: center;
+            border: 1px solid #eee;
+            transition: var(--transition-main);
+        }
+        .quick-link:hover {
+            background-color: var(--primary-color-dark);
+            color: #fff;
+            border-color: var(--primary-color-dark);
+        }
+
+        footer {
+            background: transparent; color: #aaa; text-align: center;
+            padding: 50px 0 30px 0; margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">Pixel & Pitch</a>
+            <nav>
+                <ul>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="reports.html">Reports</a></li>
+                    <li><a href="settings.html">Settings</a></li>
+                    <li><a href="login.html" class="logout-button">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="dashboard">
+        <div class="container">
+            <div class="dashboard-header">
+                <h1>BI Dashboard (TechCorp Solutions)</h1>
+            </div>
+
+            <div class="dashboard-kpi-grid">
+                <div class="kpi-card">
+                    <h3>Total Revenue</h3>
+                    <div class="kpi-value">₹405,091</div>
+                    <span class="kpi-change positive">+12.5%</span>
+                </div>
+                <div class="kpi-card">
+                    <h3>Total Profit</h3>
+                    <div class="kpi-value">₹82,450</div>
+                    <span class="kpi-change positive">+8.2%</span>
+                </div>
+                <div class="kpi-card">
+                    <h3>New Customers</h3>
+                    <div class="kpi-value">128</div>
+                    <span class="kpi-change positive">+22.1%</span>
+                </div>
+                <div class="kpi-card">
+                    <h3>Conversion Rate</h3>
+                    <div class="kpi-value">4.8%</div>
+                    <span class="kpi-change negative">-0.5%</span>
+                </div>
+            </div>
+
+            <div class="dashboard-main-grid">
+            
+                <div class="dashboard-card card-span-1" id="quickAccessFeature">
+                    <h3>Quick Access</h3>
+                    <div class="quick-access-grid">
+                        <a href="#" class="quick-link">Add New Order</a>
+                        <a href="#" class="quick-link">View Customers</a>
+                        <a href="#" class="quick-link">Generate Report</a>
+                        <a href="#" class="quick-link">Contact Support</a>
+                    </div>
+                </div>
+
+                <div class="dashboard-card card-span-2">
+                    <h3>Profit Report </h3>
+                    <div class="chart-container">
+                        <canvas id="profitChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="dashboard-card card-span-1">
+                    <h3>Lead Source</h3>
+                    <div class="chart-container" style="height: 350px;">
+                        <canvas id="leadSourceChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="dashboard-card card-span-3">
+                    <h3>Recent Orders</h3>
+                    <table class="pro-table">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th><th>Customer</th><th>Date</th><th>Amount</th><th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#8841</td><td>Global Logistics</td><td>Nov 8, 2025</td><td>₹15,200</td>
+                                <td><span class="status-badge status-shipped">Shipped</span></td>
+                            </tr>
+                            <tr>
+                                <td>#8840</td><td>Apex Industries</td><td>Nov 7, 2025</td><td>₹4,500</td>
+                                <td><span class="status-badge status-pending">Pending</span></td>
+                            </tr>
+                             <tr>
+                                <td>#8839</td><td>Quantum Solutions</td><td>Nov 7, 2025</td><td>₹22,000</td>
+                                <td><span class="status-badge status-delivered">Delivered</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Pixel & Pitch. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // --- Graph scripts yahaan hain ---
+        const profitCtx = document.getElementById('profitChart').getContext('2d');
+        const profitGradient = profitCtx.createLinearGradient(0, 0, 0, 350);
+        profitGradient.addColorStop(0, 'rgba(102, 126, 234, 0.5)');
+        profitGradient.addColorStop(1, 'rgba(102, 126, 234, 0)');
+        new Chart(profitCtx, {
+            type: 'line',
+            data: {
+                labels: ['May', 'June', 'July', 'August', 'September', 'October'],
+                datasets: [{
+                    label: 'Profit', data: [12000, 19000, 15000, 22000, 18000, 25000],
+                    borderColor: 'rgba(102, 126, 234, 1)', backgroundColor: profitGradient,
+                    fill: true, tension: 0.4
+                }]
+            },
+            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
+        });
+
+        const leadCtx = document.getElementById('leadSourceChart').getContext('2d');
+        new Chart(leadCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Organic Search', 'Referral', 'Paid Ads', 'Social Media'],
+                datasets: [{
+                    data: [45, 25, 20, 10],
+                    backgroundColor: [
+                        'rgba(102, 126, 234, 0.8)', 'rgba(75, 192, 192, 0.8)',
+                        'rgba(255, 159, 64, 0.8)', 'rgba(118, 75, 192, 0.8)'
+                    ],
+                    hoverOffset: 4
+                }]
+            },
+            options: { responsive: true, maintainAspectRatio: false }
+        });
+
+        // --- [NEW] JAVASCRIPT to HIDE feature ---
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check karo 'localStorage' mein 'showQuickAccess' setting
+            const showFeature = localStorage.getItem('showQuickAccess');
+            
+            // Agar setting 'false' hai (matlab user ne OFF kiya hai)
+            if (showFeature === 'false') {
+                // Toh 'quickAccessFeature' wale card ko hide kar do
+                document.getElementById('quickAccessFeature').style.display = 'none';
+            }
+        });
+    </script>
+
+</body>
+</html>

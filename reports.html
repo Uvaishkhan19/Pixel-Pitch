@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports - Pixel & Pitch</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Is page ke styles dashboard se copy kiye gaye hain */
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --primary-color-dark: #667eea;
+            --dark-text: #1a202c;
+            --light-text: #4a5568;
+            --bg-light: #f7fafc;
+            --card-bg: #ffffff;
+            --radius-md: 12px;
+            --shadow-sm: 0 4px 10px rgba(0,0,0,0.05);
+            --red: #e53e3e;
+        }
+        body {
+            font-family: 'Poppins', sans-serif; margin: 0;
+            background-color: var(--bg-light); color: var(--light-text);
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        header {
+            background: var(--card-bg); box-shadow: var(--shadow-sm);
+            padding: 20px 0; position: sticky; top: 0; z-index: 100;
+        }
+        header .container { display: flex; justify-content: space-between; align-items: center; }
+        .logo {
+            font-size: 1.7rem; font-weight: 700; background: var(--primary-gradient);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none;
+        }
+        nav ul { list-style: none; margin: 0; padding: 0; display: flex; }
+        nav li { margin-left: 25px; }
+        nav a {
+            text-decoration: none; color: var(--light-text); font-weight: 600;
+            font-size: 0.95rem; transition: all 0.3s ease;
+        }
+        nav a:hover { color: var(--primary-color-dark); }
+        nav a.logout-button {
+            background: var(--red); color: #fff; padding: 10px 18px;
+            border-radius: var(--radius-md); box-shadow: var(--shadow-sm);
+        }
+        nav a.logout-button:hover { color: #fff; transform: translateY(-2px); }
+        section { padding-top: 40px; padding-bottom: 40px; }
+        h1 { font-weight: 600; color: var(--dark-text); margin: 0 0 20px 0; }
+        p { font-size: 1.05rem; }
+        .dashboard-card {
+            background: var(--card-bg); padding: 30px;
+            border-radius: var(--radius-md); box-shadow: var(--shadow-sm);
+        }
+        footer {
+            background: transparent; color: #aaa; text-align: center;
+            padding: 50px 0 30px 0; margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">Pixel & Pitch</a>
+            <nav>
+                <ul>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="reports.html">Reports</a></li>
+                    <li><a href="settings.html">Settings</a></li>
+                    <li><a href="login.html" class="logout-button">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section>
+        <div class="container">
+            <h1>Reports</h1>
+            <div class="dashboard-card">
+               <h2>Quarterly Performance (Q4 2025)</h2>
+    <div class="grid-container">
+        <div class="card">
+            <h3>Sales Report</h3>
+            <div class="metric-row">
+                <span class="metric-label">Total Sales</span>
+                <span class="metric-value">₹405,091 <span class="positive">(+12.5%)</span></span>
+            </div>
+            <div class="metric-row">
+                <span class="metric-label">New Customers</span>
+                <span class="metric-value">128 <span class="positive">(+22.1%)</span></span>
+            </div>
+            <div class="metric-row">
+                <span class="metric-label">Conversion Rate</span>
+                <span class="metric-value">4.8% <span class="negative">(-0.5%)</span></span>
+            </div>
+            <div class="highlights">
+                <strong>Key Highlights:</strong>
+                <ul>
+                    <li>Strong demand for "Growth" & "Expansion" packages.</li>
+                    <li>Successful targeted campaigns drove acquisition.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Revenue Overview</h3>
+            <div class="metric-row">
+                <span class="metric-label">Total Revenue</span>
+                <span class="metric-value">₹405,091</span>
+            </div>
+            <div class="metric-row">
+                <span class="metric-label">Avg. Deal Size</span>
+                <span class="metric-value">₹3,165</span>
+            </div>
+            <div class="highlights">
+                <strong>Insights:</strong>
+                <ul>
+                    <li>Successful penetration into Vadodara MSME market.</li>
+                    <li>Core marketing packages are primary drivers.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <h2>Annual Financials (FY 2025)</h2>
+    <div class="card">
+        <div class="grid-container">
+            <div>
+                <div class="metric-row">
+                    <span class="metric-label">Annual Revenue</span>
+                    <span class="metric-value">₹1,550,000</span>
+                </div>
+                <div class="metric-row">
+                    <span class="metric-label">Operating Expenses</span>
+                    <span class="metric-value">₹1,467,550</span>
+                </div>
+            </div>
+            <div>
+                <div class="metric-row">
+                    <span class="metric-label">Total Profit</span>
+                    <span class="metric-value">₹82,450 <span class="positive">(+8.2%)</span></span>
+                </div>
+                <div class="metric-row">
+                    <span class="metric-label">Profit Margin</span>
+                    <span class="metric-value">5.32%</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
+           
+    </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Pixel & Pitch. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

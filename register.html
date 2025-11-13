@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account - Pixel & Pitch</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --primary-color-dark: #667eea;
+            --primary-color-light: #764ba2;
+            --dark-text: #1a202c;
+            --light-text: #4a5568;
+            --bg-light: #f7fafc;
+            --card-bg: #ffffff;
+            --radius-md: 12px;
+            --shadow-md: 0 8px 16px rgba(0,0,0,0.08);
+            --shadow-sm: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        body {
+            font-family: 'Poppins', sans-serif; margin: 0; background-color: var(--bg-light);
+            color: var(--light-text); display: flex; flex-direction: column; min-height: 100vh;
+        }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        header { background: var(--card-bg); box-shadow: var(--shadow-sm); padding: 20px 0; }
+        header .container { display: flex; justify-content: space-between; align-items: center; }
+        .logo {
+            font-size: 1.7rem; font-weight: 700; background: var(--primary-gradient);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none;
+        }
+        nav ul { list-style: none; margin: 0; padding: 0; display: flex; }
+        nav li { margin-left: 25px; }
+        nav a { text-decoration: none; color: var(--light-text); font-weight: 600; font-size: 0.95rem; }
+        footer { background: transparent; color: #aaa; text-align: center; padding: 40px 0; margin-top: auto; }
+        .auth-container {
+            flex-grow: 1; display: flex; align-items: center; justify-content: center; padding: 60px 0;
+        }
+        .form-container {
+            max-width: 450px; width: 100%; margin: 0 auto; background: var(--card-bg);
+            padding: 40px; border-radius: var(--radius-md); box-shadow: var(--shadow-md);
+        }
+        .form-container h2 {
+            font-weight: 600; color: var(--dark-text); text-align: center;
+            font-size: 2.2rem; margin: 0 0 25px 0;
+        }
+        .form-group { margin-bottom: 20px; }
+        .form-group label {
+            display: block; margin-bottom: 8px; font-weight: 600; color: var(--dark-text);
+        }
+        .form-control {
+            width: 100%; padding: 14px; border: 1px solid #ddd;
+            border-radius: var(--radius-md); font-family: 'Poppins', sans-serif;
+            font-size: 1rem; box-sizing: border-box; 
+        }
+        .submit-button {
+            width: 100%; padding: 16px; border: none; border-radius: var(--radius-md);
+            background: var(--primary-color-dark); color: #fff; font-size: 1.1rem;
+            font-weight: 700; cursor: pointer; transition: all 0.3s ease;
+        }
+        .submit-button:hover { transform: translateY(-2px); }
+        .auth-container p { text-align: center; margin-top: 20px; font-size: 0.95rem; }
+        .auth-container p a {
+            color: var(--primary-color-dark); font-weight: 600; text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">Pixel & Pitch</a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section class="auth-container">
+        <form class="form-container" id="registerForm">
+            <h2>Create Your Account</h2>
+            <div class="form-group">
+                <label for="name">Company Name</label>
+                <input type="text" id="name" name="name" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Work Email</label>
+                <input type="email" id="email" name="email" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" class="form-control" required>
+            </div>
+            <button type="submit" class="submit-button">Create Account</button>
+            <p>Already have an account? <a href="login.html">Login</a></p>
+        </form>
+    </section>
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Pixel & Pitch. All rights reserved.</p>
+        </div>
+    </footer>
+    <script>
+        const registerForm = document.getElementById('registerForm');
+        registerForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Account Created Successfully! Please login.');
+            window.location.href = 'login.html';
+        });
+    </script>
+</body>
+</html>

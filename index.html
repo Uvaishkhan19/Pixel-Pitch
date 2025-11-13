@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative B2B Platform</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- [NEW] Creative Variables --- */
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --primary-color-dark: #667eea;
+            --primary-color-light: #764ba2;
+            --dark-text: #1a202c;
+            --light-text: #4a5568;
+            --bg-light: #f7fafc;
+            --card-bg: #ffffff;
+            --radius-md: 12px;
+            --shadow-md: 0 8px 16px rgba(0,0,0,0.08);
+            --shadow-sm: 0 4px 10px rgba(0,0,0,0.05);
+            --transition-main: all 0.3s ease-in-out;
+        }
+
+        /* --- Basic Styles --- */
+        body {
+            /* [NEW] Using the Google Font */
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.7;
+            background-color: var(--bg-light);
+            color: var(--light-text);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 70px 0;
+        }
+
+        h1, h2, h3 {
+            font-weight: 600;
+            color: var(--dark-text);
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 40px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+        }
+
+        /* --- [NEW] Header & Navigation --- */
+        header {
+            background: var(--card-bg);
+            /* [NEW] Subtle shadow to make it "float" */
+            box-shadow: var(--shadow-sm);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.7rem;
+            font-weight: 700;
+            /* [NEW] Using the gradient for the logo text */
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav li {
+            margin-left: 25px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--light-text);
+            font-weight: 600;
+            font-size: 0.95rem;
+            /* [NEW] Smooth transition for hover */
+            transition: var(--transition-main);
+        }
+        
+        /* [NEW] Hover effect for nav links */
+        nav a:hover {
+            color: var(--primary-color-dark);
+        }
+        
+        nav a.button-style {
+            background: var(--primary-color-dark);
+            color: #fff;
+            padding: 10px 18px;
+            border-radius: var(--radius-md);
+            /* [NEW] Hover effect */
+            transition: var(--transition-main);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        nav a.button-style:hover {
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        /* --- [NEW] Hero Section --- */
+        .hero {
+            /* [NEW] Using the gradient background */
+            background: var(--primary-gradient);
+            color: #fff;
+            text-align: center;
+            padding: 120px 0;
+        }
+
+        .hero h1 {
+            font-size: 3.8rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        /* [NEW] Main Call-to-Action Button */
+        .cta-button {
+            background: #fff;
+            color: var(--primary-color-dark);
+            padding: 16px 32px;
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: var(--radius-md);
+            font-size: 1.1rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            /* [NEW] Hover effect */
+            transition: var(--transition-main);
+        }
+        
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        /* --- [NEW] Features Section --- */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            border: 1px solid #eee;
+            border-radius: var(--radius-md);
+            padding: 35px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            /* [NEW] Hover effect */
+            transition: var(--transition-main);
+        }
+        
+        /* [NEW] This makes the cards "lift up" on hover */
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .feature-card h3 {
+            font-size: 1.6rem;
+            color: var(--primary-color-dark);
+        }
+
+        /* --- [NEW] Services Section --- */
+        .services {
+            background-color: #fff;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+        
+        .service-card {
+            background: var(--bg-light);
+            border: 1px solid #eee;
+            padding: 25px;
+            border-radius: var(--radius-md);
+            /* [NEW] Hover effect */
+            transition: var(--transition-main);
+        }
+
+        .service-card:hover {
+             border-color: var(--primary-color-dark);
+        }
+        
+        .service-card h3 {
+            font-size: 1.3rem;
+        }
+
+        /* --- [NEW] Testimonials Section --- */
+        .testimonial-card {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-md);
+            max-width: 750px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .testimonial-card blockquote {
+            font-size: 1.4rem;
+            font-weight: 300; /* Lighter weight for italic */
+            font-style: italic;
+            border: none;
+            margin: 0 0 20px 0;
+            padding: 0;
+            color: var(--dark-text);
+        }
+
+        .testimonial-card .author {
+            font-weight: 600;
+            color: var(--primary-color-light);
+            font-size: 1.1rem;
+        }
+
+        /* --- [NEW] CTA Section --- */
+        .cta {
+            background: var(--dark-text);
+            color: #fff;
+            text-align: center;
+            border-radius: 20px; /* [NEW] Rounded section */
+            margin: 0 20px; /* [NEW] Give it space */
+        }
+
+        .cta h2 {
+            font-size: 2.8rem;
+            color: #fff;
+        }
+
+        .cta p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.8;
+        }
+        
+        /* [NEW] Using the same hero button style */
+        .cta .cta-button {
+            background: var(--primary-color-dark);
+            color: #fff;
+        }
+        
+        .cta .cta-button:hover {
+            background: var(--primary-color-light);
+            color: #fff;
+        }
+
+        /* --- [NEW] Footer --- */
+        footer {
+            background: transparent; /* No background */
+            color: #aaa;
+            text-align: center;
+            padding: 50px 0;
+            margin-top: 30px;
+        }
+        
+        footer a {
+            color: var(--light-text);
+            text-decoration: none;
+            transition: var(--transition-main);
+        }
+        
+        footer a:hover {
+            color: var(--primary-color-dark);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">Pixel & Pitch</a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                   
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="login.html" class="button-style">Get Started</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>The All-In-One Platform to Scale Your Business</h1>
+            <p>Streamline your operations, from supply chain to financial management, with one powerful solution.</p>
+            <a href="#pricing" class="cta-button">Start Your Free Trial</a>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <h2>Everything You Need, All in One Place</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>Supply Chain Management</h3>
+                    <p>End-to-end visibility and control over your entire supply chain.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Procurement & Vendor Tools</h3>
+                    <p>Simplify procurement, manage vendors, and control spend.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Financial Management</h3>
+                    <p>Automate invoicing, billing, and financial reporting.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Business Analytics</h3>
+                    <p>Turn raw data into actionable insights with powerful dashboards.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Team Collaboration</h3>
+                    <p>Connect your teams in one workspace to improve productivity.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Enterprise Security</h3>
+                    <p>Protect your data with industry-leading security and compliance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="services">
+        <div class="container">
+            <h2>More Than Just Software</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Strategic Consulting</h3>
+                    <p>Our experts help you map out a strategy for digital transformation.</p>
+                </div>
+                 <div class="service-card">
+                    <h3>Seamless Implementation</h3>
+                    <p>We'll get you set up and integrated with your existing systems.</p>
+                </div>
+                 <div class="service-card">
+                    <h3>World-Class 24/7 Support</h3>
+                    <p>Get instant help from our global support team, anytime you need it.</p>
+                </div>
+                 <div class="service-card">
+                    <h3>Custom Team Training</h3>
+                    <p>On-site or remote training sessions to get your teams up to speed.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <h2>Trusted by Business Leaders</h2>
+            <div class="testimonial-card">
+                <blockquote>
+                    "This platform transformed our procurement process. We cut costs by 20% in just six months. It's an essential tool for any modern business."
+                </blockquote>
+                <p class="author">
+                    - Pixel & Pitch
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Optimize Your Business?</h2>
+            <p>See our scalable plans and find the perfect fit for your team.</p>
+            <a href="pricing.html" class="cta-button">View Pricing Plans</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Pixel & Pitch. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+        </div>
+    </footer>
+
+</body>
+</html>
